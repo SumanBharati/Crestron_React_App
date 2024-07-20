@@ -1,25 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+
+// Import the MemoryRouter. This is a special kind of router that does not use the browser's URL bar.
+import { MemoryRouter as Router } from "react-router-dom";
+
+// Import the App
+import "./App.scss";
+
+// Import the AppRouting
+import AppRouting from "./AppRouting";
+
+// Import the WebXPanelService
+import WebXPanelService from "./services/WebXPanelService";
+
+import { Provider } from "react-redux";
+import appStore from './utils/appStore';
+
+// console.log(navigator.userAgent);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={appStore}>
+      <WebXPanelService />
+      <Router>
+        <AppRouting />
+      </Router>
+    </Provider>
   );
 }
 
